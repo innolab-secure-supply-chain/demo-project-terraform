@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run¬checkov scan
+      - name: Run checkov scan
         run: |
           checkov -s -d . --output-file-path reports
 
