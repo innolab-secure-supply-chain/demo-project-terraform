@@ -1,16 +1,23 @@
-name: tfsec-pr-commenter
+name: 'Trivy Scan'
 on:
   pull_request:
 jobs:
-  tfsec:
-    name: tfsec PR commenter
-    runs-on: ubuntu-latest
-
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
     steps:
-      - name: Clone repo
-        uses: actions/checkout@master
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: tfsec
         uses: tfsec/tfsec-pr-commenter-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          format: 'table'
+          severity: 'LOW,MEDIUM,HIGH,CRITICAL'
+          exit-code: 1
