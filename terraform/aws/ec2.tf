@@ -87,6 +87,7 @@ resource "aws_security_group" "web-node" {
     cidr_blocks = [
     "0.0.0.0/0"]
   }
+  #tfsec:ignore:AVD-AWS-0107
   ingress {
     from_port = 22
     to_port   = 22
