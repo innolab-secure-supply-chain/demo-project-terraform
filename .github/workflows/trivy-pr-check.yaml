@@ -13,6 +13,7 @@ jobs:
         uses: tfsec/tfsec-pr-commenter-action@main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          working_directory: ''
 
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@master
